@@ -60,7 +60,7 @@ const ASSIST_OPTIONS = [
  },
  {
    id: "marketing",
-   label: "Marketing",
+   label: "Marketing ",
    description:
      "Customer centricity is key and made possible through analytics, agile processes, and a test-and-learn culture.",
    image: "/images/assist-marketing.jpg",
