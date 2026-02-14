@@ -1,5 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import { Pause, Play, ChevronLeft, ChevronRight, Briefcase, TrendingUp, Users } from "lucide-react";
+import {
+  Pause,
+  Play,
+  ChevronLeft,
+  ChevronRight,
+  Briefcase,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 
 const services = [
   {
@@ -34,7 +42,7 @@ const companies = [
     name: "HealthPlus",
     logo: "https://dummyimage.com/200x200/000/fff&text=HealthPlus",
     image: "https://images.unsplash.com/photo-1586772006610-2f4e4d07137a",
-    desc: "Innovative healthcare services for patient well‑being.",
+    desc: "Innovative healthcare services for patient well-being.",
     services: ["HR Consulting", "Financial Consulting"],
   },
   {
@@ -48,16 +56,23 @@ const companies = [
 
 export default function Services({ darkMode }) {
   const [paused, setPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
-  const containerRef = useRef(null);
-  const posRef = useRef(0); // track slider position
-  const animationRef = useRef(null);
-  const speed = 0.7; // adjust speed
 
-  // Desktop + Mobile Slider Animation
+  const sliderWrapperRef = useRef(null);
+  const containerRef = useRef(null);
+  const posRef = useRef(0);
+  const animationRef = useRef(null);
+  const speed = 0.7;
+
+  /* Auto slider animation */
   useEffect(() => {
     const animate = () => {
-      if (!paused && containerRef.current) {
+      if (
+        !paused &&
+        activeIndex === null &&
+        containerRef.current
+      ) {
         const width = containerRef.current.scrollWidth / 2;
         posRef.current += speed;
         if (posRef.current >= width) posRef.current = 0;
@@ -65,27 +80,47 @@ export default function Services({ darkMode }) {
       }
       animationRef.current = requestAnimationFrame(animate);
     };
+
     animationRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationRef.current);
-  }, [paused]);
+  }, [paused, activeIndex]);
+
+  /* Resume animation when clicking outside slider */
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (
+        sliderWrapperRef.current &&
+        !sliderWrapperRef.current.contains(e.target)
+      ) {
+        setActiveIndex(null);
+        setPaused(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, []);
 
   const moveLeft = () => {
-    if (containerRef.current) {
-      posRef.current = Math.max(posRef.current - 200, 0);
-      containerRef.current.style.transform = `translateX(-${posRef.current}px)`;
-    }
+    posRef.current = Math.max(posRef.current - 200, 0);
+    containerRef.current.style.transform = `translateX(-${posRef.current}px)`;
   };
 
   const moveRight = () => {
-    if (containerRef.current) {
-      posRef.current += 200;
-      containerRef.current.style.transform = `translateX(-${posRef.current}px)`;
-    }
+    posRef.current += 200;
+    containerRef.current.style.transform = `translateX(-${posRef.current}px)`;
   };
 
   return (
     <section
-      className={`py-32 px-4 bg-cover bg-center min-h-screen ${darkMode ? "dark" : ""}`}
+      className={`py-32 px-4 bg-cover bg-center min-h-screen ${
+        darkMode ? "dark" : ""
+      }`}
       style={{
         backgroundImage: darkMode
           ? "url('/images/dark_background_img.png')"
@@ -94,47 +129,88 @@ export default function Services({ darkMode }) {
     >
       {/* Heading */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-semibold text-black dark:text-white drop-shadow-lg">
+        <h2 className="text-3xl md:text-4xl font-semibold text-black dark:text-white">
           Our Expertise
         </h2>
         <div className="w-20 h-1 bg-red-600 mx-auto mt-4 rounded-full" />
       </div>
 
-      {/* Slider */}
-      <div
-        className="relative max-w-5xl mx-auto bg-white/70 dark:bg-gray-800/70 rounded-3xl shadow-2xl overflow-hidden p-4 backdrop-blur-md"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
+      {/* Slider Wrapper */}
+      <div ref={sliderWrapperRef}>
         <div
-          className="slider-track flex gap-4"
-          ref={containerRef}
-          style={{ willChange: "transform" }} // improves performance
+          className="relative max-w-5xl mx-auto bg-white/70 dark:bg-gray-800/70 rounded-3xl shadow-2xl overflow-hidden p-4 backdrop-blur-md"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => {
+            if (activeIndex === null) setPaused(false);
+          }}
         >
-          {[...services, ...services].map((service, i) => (
-            <div
-              key={i}
-              className="service-card min-w-[300px] max-w-[350px] rounded-xl overflow-hidden cursor-pointer relative"
-            >
-              <img src={service.image} alt={service.title} className="w-full h-64 object-cover" />
-              <div className="service-overlay absolute inset-0 bg-black/50 flex justify-center items-center text-white text-center p-4 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                <p className="text-lg md:text-xl">{service.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+          <div
+            ref={containerRef}
+            className="flex gap-4"
+            style={{ willChange: "transform" }}
+            onClick={() => {
+              setActiveIndex(null);
+              setPaused(false);
+            }}
+          >
+            {[...services, ...services].map((service, i) => {
+              const isActive = activeIndex === i;
 
-        {/* Controls */}
-        <div className="mt-4 flex justify-center gap-4">
-          <button onClick={moveLeft} className="glass-btn">
-            <ChevronLeft size={17} />
-          </button>
-          <button onClick={() => setPaused(!paused)} className="glass-btn">
-            {paused ? <Play size={17} /> : <Pause size={17} />}
-          </button>
-          <button onClick={moveRight} className="glass-btn">
-            <ChevronRight size={17} />
-          </button>
+              return (
+                <div
+                  key={i}
+                  className={`min-w-[300px] max-w-[350px] rounded-xl overflow-hidden relative cursor-pointer transition-transform ${
+                    isActive ? "scale-[1.02] z-10" : ""
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    if (isActive) {
+                      setActiveIndex(null);
+                      setPaused(false);
+                    } else {
+                      setActiveIndex(i);
+                      setPaused(true);
+                    }
+                  }}
+                >
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-64 object-cover"
+                  />
+
+                  {/* Overlay */}
+                  <div
+                    className={`
+                      absolute inset-0 bg-black/60 flex items-center justify-center
+                      text-white text-center p-4 transition-opacity duration-300
+                      ${isActive ? "opacity-100" : "opacity-0"}
+                      md:hover:opacity-100
+                    `}
+                  >
+                    <p className="text-lg">{service.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Controls */}
+          <div className="mt-4 flex justify-center gap-4">
+            <button onClick={moveLeft} className="glass-btn">
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={() => setPaused(!paused)}
+              className="glass-btn"
+            >
+              {paused ? <Play size={18} /> : <Pause size={18} />}
+            </button>
+            <button onClick={moveRight} className="glass-btn">
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
       </div>
 
