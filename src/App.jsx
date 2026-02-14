@@ -399,7 +399,7 @@ export default function App() {
 
         <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
         <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-        <Link to="/Whyus" className="hover:text-red-600">Why Us</Link>
+        <Link to="/Whyus" onClick={() => setMenuOpen(false)}className="hover:text-red-600">Why Us</Link>
         {/* ⚡ SERVICES WITH LIGHTNING ICON + DROPDOWN */}
         <div className="flex justify-between items-center w-full">
 
