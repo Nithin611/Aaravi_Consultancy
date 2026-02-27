@@ -2,38 +2,87 @@ import React, { useState, useRef, useEffect } from "react";
 
 const HEADER_HEIGHT = 72;
 
-const ContactUs = ({ darkMode }) => {
-  const [status, setStatus] = useState(null); // "success" | "error"
+const ContactUs = () => {
+  const [status, setStatus] = useState(null); 
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
 
-  // Clear status when user types again
+  const [service, setService] = useState("");
+  const [subServiceList, setSubServiceList] = useState([]);
+
+  const subServiceOptions = {
+    "Startup Advisory": [
+      "Business Incorporation",
+      "Regulatory Registrations",
+      "ESOP Structuring",
+      "Risk Advisory",
+      "Virtual CFO Services"
+    ],
+    "Taxation & Compliance": [
+      "GST Filing",
+      "Income Tax Planning",
+      "TDS Return"
+    ],
+    "Financial Services": [
+      "Bookkeeping",
+      "Revenue Leakage Assessments",
+      "Accounts Integrity",
+      "Internal Control Assessments",
+      "Inventory Accuracy & Aging Report"
+    ],
+    "Growth Advisory": [
+      "PMF Consulting (Product Market Fit)",
+      "Cost Reduction Advisory",
+      "Growth Strategy",
+      "Competitive Analysis"
+    ],
+    "HR Consulting": [
+      "Talent Acquisition Consulting",
+      "Recruitment Process Outsourcing",
+      "Role Architecture & Designing Services"
+    ]
+  };
+
+  const updateSubServices = (value) => {
+    setService(value);
+    setSubServiceList(subServiceOptions[value] || []);
+  };
+
   const handleInputChange = () => {
     if (status) setStatus(null);
   };
 
-  // Auto-clear status message after 10 seconds
   useEffect(() => {
     if (!status) return;
-    const timer = setTimeout(() => setStatus(null), 10000); // 10 sec
+    const timer = setTimeout(() => setStatus(null), 10000);
     return () => clearTimeout(timer);
   }, [status]);
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
+
+    const fullName = e.target.fullName.value;
+    const companyName = e.target.companyName.value;
+    const phoneNumber = e.target.phoneNumber.value;
+    const email = e.target.email.value;
+    const service = e.target.service.value;
+    const subService = e.target.subService.value;
+    const message = e.target.message.value;
 
     try {
       const response = await fetch("http://localhost:8080/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fullName: e.target[0].value,
-          phoneNumber: e.target[1].value,
-          email: e.target[2].value,
-          message: e.target[3].value,
+          fullName,
+          companyName,
+          phoneNumber,
+          email,
+          service,
+          subService,
+          message
         }),
       });
 
@@ -42,24 +91,19 @@ const ContactUs = ({ darkMode }) => {
     } catch {
       setStatus("error");
     } finally {
-      formRef.current.reset(); // ✅ always clear form
+      formRef.current.reset();
+      setSubServiceList([]);
       setLoading(false);
     }
   };
 
   return (
     <>
-      {/* MOBILE + STATUS ANIMATION */}
       <style>
         {`
           @media (max-width: 768px) {
-            .contact-card {
-              flex-direction: column;
-            }
-            .contact-image,
-            .contact-form {
-              width: 100% !important;
-            }
+            .contact-card { flex-direction: column; }
+            .contact-image, .contact-form { width: 100% !important; }
           }
 
           .status-msg {
@@ -69,16 +113,8 @@ const ContactUs = ({ darkMode }) => {
             font-weight: 500;
             animation: fadeSlide 0.4s ease forwards;
           }
-
-          .success {
-            background: rgba(34,197,94,0.15);
-            color: #22c55e;
-          }
-
-          .error {
-            background: rgba(239,68,68,0.15);
-            color: #ef4444;
-          }
+          .success { background: rgba(34,197,94,0.15); color: #22c55e; }
+          .error { background: rgba(239,68,68,0.15); color: #ef4444; }
 
           @keyframes fadeSlide {
             from { opacity: 0; transform: translateY(8px); }
@@ -90,24 +126,20 @@ const ContactUs = ({ darkMode }) => {
       <section
         style={{
           ...styles.page,
-          backgroundImage: darkMode
-            ? "url('/images/dark_background_img.png')"
-            : "url('/images/image1.jpeg')",
+          backgroundImage: "url('/images/image1.jpeg')",
         }}
       >
         <div
           className="contact-card"
           style={{
             ...styles.card,
-            backgroundColor: darkMode
-              ? "rgba(15, 23, 42, 0.92)"
-              : "rgba(255, 255, 255, 0.9)",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
           }}
         >
           {/* IMAGE */}
           <div className="contact-image" style={styles.imageSection} />
 
-          {/* FORM */}
+          {/* UPDATED RESPONSIVE FORM */}
           <form
             ref={formRef}
             className="contact-form"
@@ -117,50 +149,103 @@ const ContactUs = ({ darkMode }) => {
             <h2
               style={{
                 ...styles.heading,
-                color: darkMode ? "#fecaca" : "#b11226",
+                color: "#b11226",
               }}
             >
-              Get in Touch
+              Connect With Our Experts
             </h2>
 
+            <label style={labelStyle()}>Full Name:</label>
             <input
+              name="fullName"
               type="text"
-              placeholder="Full Name"
+              placeholder="Type your full name here"
               required
-              style={inputStyle(darkMode)}
+              style={inputStyle()}
               onChange={handleInputChange}
             />
+
+            <label style={labelStyle()}>Company Name:</label>
             <input
-              type="tel"
-              placeholder="Phone Number"
+              name="companyName"
+              type="text"
+              placeholder="Enter your company name"
               required
-              style={inputStyle(darkMode)}
+              style={inputStyle()}
               onChange={handleInputChange}
             />
+
+            <label style={labelStyle()}>Phone Number (Optional):</label>
             <input
+              name="phoneNumber"
+              type="text"
+              placeholder="Enter your phone number"
+              style={inputStyle()}
+              onChange={handleInputChange}
+            />
+
+            <label style={labelStyle()}>Email:</label>
+            <input
+              name="email"
               type="email"
-              placeholder="Email Address"
+              placeholder="Enter your email address"
               required
-              style={inputStyle(darkMode)}
+              style={inputStyle()}
               onChange={handleInputChange}
             />
+
+            <label style={labelStyle()}>Service Interested In:</label>
+            <select
+              name="service"
+              required
+              style={inputStyle()}
+              onChange={(e) => {
+                updateSubServices(e.target.value);
+                handleInputChange();
+              }}
+            >
+              <option value="">-- Select a Service --</option>
+              {Object.keys(subServiceOptions).map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+
+            <label style={labelStyle()}>Sub-Service:</label>
+            <select
+              name="subService"
+              required
+              disabled={subServiceList.length === 0}
+              style={{
+                ...inputStyle(),
+                opacity: subServiceList.length === 0 ? 0.6 : 1,
+              }}
+            >
+              <option value="">-- Select Sub-Service --</option>
+              {subServiceList.map((sub) => (
+                <option key={sub} value={sub}>{sub}</option>
+              ))}
+            </select>
+
+            <label style={labelStyle()}>Tell Us About Your Needs:</label>
             <textarea
-              placeholder="Your Message"
+              name="message"
+              rows="4"
+              placeholder="Tell us about your requirements here..."
               required
-              style={textareaStyle(darkMode)}
+              style={textareaStyle()}
               onChange={handleInputChange}
-            />
+            ></textarea>
 
             <button
               type="submit"
               disabled={loading}
               style={{
                 ...styles.button,
-                backgroundColor: darkMode ? "#dc2626" : "#b11226",
+                backgroundColor: "#b11226",
                 opacity: loading ? 0.7 : 1,
               }}
             >
-              {loading ? "Submitting..." : "Submit"}
+              {loading ? "Submitting..." : "Submit Inquiry"}
             </button>
 
             {status === "success" && (
@@ -180,7 +265,8 @@ const ContactUs = ({ darkMode }) => {
   );
 };
 
-/* ---------------- STYLES ---------------- */
+/* ---------- STYLES ---------- */
+
 const styles = {
   page: {
     minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
@@ -204,7 +290,7 @@ const styles = {
   imageSection: {
     width: "50%",
     minHeight: "320px",
-    backgroundImage: "url('/images/contactus.png')",
+    backgroundImage: "url('https://images.unsplash.com/photo-1556761175-4b46a572b786')",
     backgroundSize: "cover",
     backgroundPosition: "center",
   },
@@ -213,7 +299,6 @@ const styles = {
     padding: "36px",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
   },
   heading: {
     fontSize: "28px",
@@ -232,19 +317,26 @@ const styles = {
   },
 };
 
-/* ---------------- INPUT STYLES ---------------- */
-const inputStyle = (darkMode) => ({
+const labelStyle = () => ({
+  fontSize: "14px",
+  fontWeight: "600",
+  color: "#111",
+  marginBottom: "5px",
+  marginTop: "5px",
+});
+
+const inputStyle = () => ({
   padding: "12px 14px",
   marginBottom: "14px",
   borderRadius: "10px",
   fontSize: "14px",
-  backgroundColor: darkMode ? "#020617" : "#ffffff",
-  color: darkMode ? "#f8fafc" : "#000",
-  border: darkMode ? "1px solid #334155" : "1px solid #ccc",
+  backgroundColor: "#fff",
+  color: "#111",
+  border: "1px solid #ccc",
 });
 
-const textareaStyle = (darkMode) => ({
-  ...inputStyle(darkMode),
+const textareaStyle = () => ({
+  ...inputStyle(),
   height: "120px",
   resize: "none",
 });

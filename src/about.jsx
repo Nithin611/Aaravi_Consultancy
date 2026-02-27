@@ -1,15 +1,11 @@
 import { useState } from "react";
 
-export default function ABOUT({ darkMode }) {
+export default function ABOUT() {
   return (
     <section
-      className={`py-20 px-6 min-h-screen bg-cover bg-center relative ${
-        darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
-      }`}
+      className={`py-20 px-6 min-h-screen bg-cover bg-center relative bg-gray-50 text-gray-900 dark:bg-white-900 dark:text-black`}
       style={{
-        backgroundImage: darkMode
-          ? "url('/images/dark_background_img.png')"
-          : "url('/images/image1.jpeg')",
+        backgroundImage: "url('/images/image1.jpeg')",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
       }}
@@ -26,37 +22,28 @@ export default function ABOUT({ darkMode }) {
       </style>
 
       <div className="max-w-6xl mx-auto">
-
         {/* ----------- INTRO SECTION ----------- */}
         <div className="text-center mt-6 mb-12">
           <div className="h-6"></div>
-
-          {/* 🎨 Improved modern heading */}
           <h2
-            className={`
-              text-4xl md:text-5xl font-extrabold tracking-wide mb-6 select-none
-              ${darkMode ? "text-white" : "text-black"}
-            `}
+            className="text-4xl md:text-5xl font-extrabold tracking-wide mb-6 select-none"
           >
             <span
-              className={`inline-block px-4 pb-1 border-b-4 rounded-md tracking-wider`}
+              className="inline-block px-4 pb-1 border-b-4 rounded-md tracking-wider"
               style={{ borderColor: "crimson" }}
             >
               Who We Are
             </span>
           </h2>
 
-          {/* ✨ Clean static About text with fade-in */}
           <div
-            className={`mx-auto rounded-xl p-8 shadow-xl backdrop-blur-md text-lg md:text-xl leading-relaxed
-              ${darkMode ? "bg-gray-800/40" : "bg-white/80"}
-              animate-fadeIn
-            `}
+            className="mx-auto rounded-xl p-8 shadow-xl backdrop-blur-md text-lg md:text-xl leading-relaxed
+              bg-white/80 dark:bg-white-800 animate-fadeIn"
           >
             <p className="font-medium">
-            Aaravi Consulting dedicated to empowering startups and established businesses. Recognizing the common hurdles
-encountered by founders, we established Aaravi Consulting to facilitate the transition from conceptualization
-to successful implementation, fostering growth through optimized financial, marketing and human resources strategies.
+              Aaravi Consulting is dedicated to empowering startups and established businesses. Recognizing the common hurdles
+              encountered by founders, we established Aaravi Consulting to facilitate the transition from conceptualization
+              to successful implementation, fostering growth through optimized financial, marketing, and human resources strategies.
             </p>
           </div>
         </div>
@@ -65,15 +52,8 @@ to successful implementation, fostering growth through optimized financial, mark
         <h2 className="text-3xl font-bold mb-6">Founder</h2>
 
         <div
-          className={`rounded-2xl shadow-lg p-6 flex flex-col md:flex-row gap-6 
-          backdrop-blur-md transition-all duration-300 relative
-          ${
-            darkMode
-              ? "bg-gray-800/60"
-              : "bg-white/80"
-          }
-          hover:animate-[glowingBorder_2.5s_linear_infinite]
-        `}
+          className="rounded-2xl shadow-lg p-6 flex flex-col md:flex-row gap-6 backdrop-blur-md transition-all duration-300 
+            bg-white/80 dark:bg-white-800 hover:animate-[glowingBorder_2.5s_linear_infinite]"
         >
           <img
             src="https://images.unsplash.com/photo-1607746882042-944635dfe10e"
@@ -96,9 +76,7 @@ to successful implementation, fostering growth through optimized financial, mark
         <h2 className="text-3xl font-bold mt-20 mb-6 text-center">Our Team</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
           <TeamCard
-            darkMode={darkMode}
             img="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde"
             name="Emily Carter"
             role="Lead Developer"
@@ -106,7 +84,6 @@ to successful implementation, fostering growth through optimized financial, mark
           />
 
           <TeamCard
-            darkMode={darkMode}
             img="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"
             name="Michael Smith"
             role="UI/UX Designer"
@@ -114,26 +91,22 @@ to successful implementation, fostering growth through optimized financial, mark
           />
 
           <TeamCard
-            darkMode={darkMode}
             img="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1"
             name="Sophia Williams"
             role="Project Manager"
             text="Sophia drives seamless execution and smooth product delivery."
           />
-
         </div>
       </div>
     </section>
   );
 }
 
-function TeamCard({ darkMode, img, name, role, text }) {
+function TeamCard({ img, name, role, text }) {
   return (
     <div
-      className={`rounded-2xl shadow-lg p-6 text-center 
-      backdrop-blur-md hover:scale-[1.05] duration-300 ${
-        darkMode ? "bg-gray-800/50" : "bg-white/80"
-      }`}
+      className="rounded-2xl shadow-lg p-6 text-center backdrop-blur-md hover:scale-[1.05] duration-300
+        bg-white/80 dark:bg-white-800"
     >
       <img
         src={img}

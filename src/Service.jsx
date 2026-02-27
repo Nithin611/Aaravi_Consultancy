@@ -54,7 +54,7 @@ const companies = [
   },
 ];
 
-export default function Services({ darkMode }) {
+export default function Services() {
   const [paused, setPaused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCompany, setSelectedCompany] = useState(companies[0]);
@@ -65,14 +65,10 @@ export default function Services({ darkMode }) {
   const animationRef = useRef(null);
   const speed = 0.7;
 
-  /* Auto slider animation */
+  // Auto slider animation
   useEffect(() => {
     const animate = () => {
-      if (
-        !paused &&
-        activeIndex === null &&
-        containerRef.current
-      ) {
+      if (!paused && activeIndex === null && containerRef.current) {
         const width = containerRef.current.scrollWidth / 2;
         posRef.current += speed;
         if (posRef.current >= width) posRef.current = 0;
@@ -80,26 +76,20 @@ export default function Services({ darkMode }) {
       }
       animationRef.current = requestAnimationFrame(animate);
     };
-
     animationRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationRef.current);
   }, [paused, activeIndex]);
 
-  /* Resume animation when clicking outside slider */
+  // Resume animation on outside click
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (
-        sliderWrapperRef.current &&
-        !sliderWrapperRef.current.contains(e.target)
-      ) {
+      if (sliderWrapperRef.current && !sliderWrapperRef.current.contains(e.target)) {
         setActiveIndex(null);
         setPaused(false);
       }
     };
-
     document.addEventListener("click", handleOutsideClick);
     document.addEventListener("touchstart", handleOutsideClick);
-
     return () => {
       document.removeEventListener("click", handleOutsideClick);
       document.removeEventListener("touchstart", handleOutsideClick);
@@ -110,7 +100,6 @@ export default function Services({ darkMode }) {
     posRef.current = Math.max(posRef.current - 200, 0);
     containerRef.current.style.transform = `translateX(-${posRef.current}px)`;
   };
-
   const moveRight = () => {
     posRef.current += 200;
     containerRef.current.style.transform = `translateX(-${posRef.current}px)`;
@@ -118,44 +107,29 @@ export default function Services({ darkMode }) {
 
   return (
     <section
-      className={`py-32 px-4 bg-cover bg-center min-h-screen ${
-        darkMode ? "dark" : ""
-      }`}
-      style={{
-        backgroundImage: darkMode
-          ? "url('/images/dark_background_img.png')"
-          : "url('/images/image1.jpeg')",
-      }}
+      className="py-32 px-4 bg-cover bg-center min-h-screen bg-white-50 text-black-900 dark:bg-white-50 dark:text-black-900"
+      style={{ backgroundImage: "url('/images/image1.jpeg')" }}
     >
       {/* Heading */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-semibold text-black dark:text-white">
+        <h2 className="text-3xl md:text-4xl font-semibold text-black dark:text-black">
           Our Expertise
         </h2>
         <div className="w-20 h-1 bg-red-600 mx-auto mt-4 rounded-full" />
       </div>
 
-      {/* Slider Wrapper */}
+      {/* Slider */}
       <div ref={sliderWrapperRef}>
         <div
-          className="relative max-w-5xl mx-auto bg-white/70 dark:bg-gray-800/70 rounded-3xl shadow-2xl overflow-hidden p-4 backdrop-blur-md"
+          className="relative max-w-5xl mx-auto bg-white/70 dark:bg-white/70 rounded-3xl shadow-2xl overflow-hidden p-4 backdrop-blur-md"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => {
             if (activeIndex === null) setPaused(false);
           }}
         >
-          <div
-            ref={containerRef}
-            className="flex gap-4"
-            style={{ willChange: "transform" }}
-            onClick={() => {
-              setActiveIndex(null);
-              setPaused(false);
-            }}
-          >
+          <div ref={containerRef} className="flex gap-4" style={{ willChange: "transform" }}>
             {[...services, ...services].map((service, i) => {
               const isActive = activeIndex === i;
-
               return (
                 <div
                   key={i}
@@ -164,7 +138,6 @@ export default function Services({ darkMode }) {
                   }`}
                   onClick={(e) => {
                     e.stopPropagation();
-
                     if (isActive) {
                       setActiveIndex(null);
                       setPaused(false);
@@ -174,20 +147,11 @@ export default function Services({ darkMode }) {
                     }
                   }}
                 >
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-64 object-cover"
-                  />
-
-                  {/* Overlay */}
+                  <img src={service.image} alt={service.title} className="w-full h-64 object-cover" />
                   <div
-                    className={`
-                      absolute inset-0 bg-black/60 flex items-center justify-center
-                      text-white text-center p-4 transition-opacity duration-300
-                      ${isActive ? "opacity-100" : "opacity-0"}
-                      md:hover:opacity-100
-                    `}
+                    className={`absolute inset-0 bg-black/60 flex items-center justify-center text-white text-center p-4 transition-opacity duration-300 ${
+                      isActive ? "opacity-100" : "opacity-0"
+                    } md:hover:opacity-100`}
                   >
                     <p className="text-lg">{service.desc}</p>
                   </div>
@@ -201,10 +165,7 @@ export default function Services({ darkMode }) {
             <button onClick={moveLeft} className="glass-btn">
               <ChevronLeft size={18} />
             </button>
-            <button
-              onClick={() => setPaused(!paused)}
-              className="glass-btn"
-            >
+            <button onClick={() => setPaused(!paused)} className="glass-btn">
               {paused ? <Play size={18} /> : <Pause size={18} />}
             </button>
             <button onClick={moveRight} className="glass-btn">
@@ -214,26 +175,26 @@ export default function Services({ darkMode }) {
         </div>
       </div>
 
-      {/* Highlights */}
+      {/* Service Highlights */}
       <div className="mt-16 flex flex-wrap justify-center gap-8">
         {services.map((service) => (
           <div
             key={service.title}
-            className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md p-6 rounded-xl shadow-lg w-72 text-center"
+            className="bg-white/70 dark:bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-lg w-72 text-center"
           >
             {service.icon}
-            <h3 className="font-semibold text-lg text-black dark:text-white">{service.title}</h3>
-            <p className="text-gray-700 dark:text-gray-300">{service.desc}</p>
+            <h3 className="font-semibold text-lg text-black dark:text-black">{service.title}</h3>
+            <p className="text-gray-700 dark:text-gray-700">{service.desc}</p>
           </div>
         ))}
       </div>
 
       {/* Company Section */}
       <div className="mt-20 max-w-6xl mx-auto">
-        <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 flex flex-col md:flex-row gap-8 items-start">
-          {/* Left: Dropdown + services */}
+        <div className="bg-white/80 dark:bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 flex flex-col md:flex-row gap-8 items-start">
+          {/* Left */}
           <div className="flex-1">
-            <h3 className="text-xl font-semibold mb-4 text-black dark:text-white">
+            <h3 className="text-xl font-semibold mb-4 text-black dark:text-black">
               Select a company to see its services:
             </h3>
             <select
@@ -241,7 +202,7 @@ export default function Services({ darkMode }) {
               onChange={(e) =>
                 setSelectedCompany(companies.find((c) => c.name === e.target.value))
               }
-              className="p-3 rounded-lg border border-gray-300 dark:border-gray-600 w-full focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-800 dark:text-white"
+              className="p-3 rounded-lg border border-gray-300 dark:border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-white dark:text-black"
             >
               {companies.map((company) => (
                 <option key={company.name} value={company.name}>
@@ -250,7 +211,7 @@ export default function Services({ darkMode }) {
               ))}
             </select>
 
-            <p className="mt-4 text-gray-700 dark:text-gray-300">
+            <p className="mt-4 text-gray-700 dark:text-gray-700">
               Choose from a selection of companies to view their key offerings and details. The information updates automatically as you select different companies.
             </p>
 
@@ -260,7 +221,7 @@ export default function Services({ darkMode }) {
                 return (
                   <div
                     key={s}
-                    className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 p-4 rounded-xl flex flex-col items-center text-center shadow-md"
+                    className="bg-red-100 dark:bg-red-100/30 text-red-700 dark:text-red-700 p-4 rounded-xl flex flex-col items-center text-center shadow-md"
                   >
                     {service.icon}
                     <p className="mt-2 font-semibold">{service.title}</p>
@@ -270,7 +231,7 @@ export default function Services({ darkMode }) {
             </div>
           </div>
 
-          {/* Right: Company Card */}
+          {/* Right */}
           <div
             className="flex-1 rounded-2xl overflow-hidden shadow-lg p-6 relative"
             style={{
@@ -294,10 +255,10 @@ export default function Services({ darkMode }) {
 
       {/* CTA */}
       <div className="mt-28 text-center">
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-4xl font-bold text-black dark:text-black">
           Let’s Build Your Growth Strategy
         </h2>
-        <p className="mt-4 text-gray-700 dark:text-gray-300">
+        <p className="mt-4 text-gray-700 dark:text-gray-700">
           Speak with our experts and discover what’s possible.
         </p>
         <button className="mt-8 px-8 py-4 bg-red-900 text-white rounded-xl hover:bg-red-700 transition">

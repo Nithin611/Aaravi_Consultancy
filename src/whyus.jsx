@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function WhyUs({ darkMode }) {
+export default function WhyUs() {
   const [selected, setSelected] = useState(0);
 
   const approachData = [
@@ -27,7 +27,7 @@ export default function WhyUs({ darkMode }) {
       points: [
         "Customized financial planning and accounting frameworks",
         "Selection of suitable compliance and tax strategies",
-        "Process improvemnet and control structuring"
+        "Process improvement and control structuring"
       ],
       img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc"
     }
@@ -35,13 +35,9 @@ export default function WhyUs({ darkMode }) {
 
   return (
     <section
-      className={`py-20 px-6 min-h-screen bg-cover bg-center relative ${
-        darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
-      }`}
+      className="py-20 px-6 min-h-screen bg-cover bg-center relative bg-gray-50 text-gray-900 dark:bg-gray-50 dark:text-gray-900"
       style={{
-        backgroundImage: darkMode
-          ? "url('/images/dark_background_img.png')"
-          : "url('/images/image1.jpeg')",
+        backgroundImage: "url('/images/image1.jpeg')",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
       }}
@@ -50,20 +46,12 @@ export default function WhyUs({ darkMode }) {
         <div className="h-6"></div>
 
         {/* ---------- PAGE TITLE ---------- */}
-        <h1
-          className={`text-4xl md:text-5xl font-extrabold tracking-wide text-center mb-14 ${
-            darkMode ? "text-white" : "text-gray-900"
-          }`}
-        >
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-wide text-center mb-14">
           Why Choose Us
         </h1>
 
         {/* ---------- VISION ---------- */}
-        <div
-          className={`rounded-2xl shadow-lg p-6 md:p-8 mb-12 backdrop-blur-md transition-all duration-300 ${
-            darkMode ? "bg-gray-800/50" : "bg-white/75"
-          }`}
-        >
+        <div className="rounded-2xl shadow-lg p-6 md:p-8 mb-12 backdrop-blur-md transition-all duration-300 bg-white/75 dark:bg-white/75">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
             <img
               src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
@@ -80,17 +68,13 @@ export default function WhyUs({ darkMode }) {
         </div>
 
         {/* ---------- MISSION ---------- */}
-        <div
-          className={`rounded-2xl shadow-lg p-6 md:p-8 mb-12 backdrop-blur-md transition-all duration-300 ${
-            darkMode ? "bg-gray-800/50" : "bg-white/75"
-          }`}
-        >
+        <div className="rounded-2xl shadow-lg p-6 md:p-8 mb-12 backdrop-blur-md transition-all duration-300 bg-white/75 dark:bg-white/75">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center md:flex-row-reverse">
             <div className="order-2 md:order-1">
               <h2 className="text-3xl font-bold mb-3">Our Mission</h2>
               <p className="text-lg opacity-90 leading-relaxed">
-              To stand beside entrepreneurs not just as consultants but as partners - guiding them from validating ideas to
-streamlining operations, structuring finances, building strong teams and finding true market fit
+                To stand beside entrepreneurs not just as consultants but as partners - guiding them from validating ideas to
+                streamlining operations, structuring finances, building strong teams and finding true market fit.
               </p>
             </div>
             <img
@@ -106,34 +90,21 @@ streamlining operations, structuring finances, building strong teams and finding
           Our Approach
         </h2>
 
-        {/* ⭐ FIXED GRID CENTERING ⭐ */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:items-center">
 
-          {/* ---------- LEFT SELECTOR (Perfect Center Alignment Now) ---------- */}
-          <div
-            className={`
-              rounded-2xl p-6 shadow-xl backdrop-blur-md flex flex-col justify-start
-              md:self-center
-              ${darkMode ? "bg-gray-800/50" : "bg-white/80"}
-            `}
-          >
+          {/* ---------- LEFT SELECTOR ---------- */}
+          <div className="rounded-2xl p-6 shadow-xl backdrop-blur-md flex flex-col justify-start md:self-center bg-white/80 dark:bg-white/80">
             <h3 className="text-2xl font-bold mb-4">Select Approach</h3>
-
             <div className="flex flex-col gap-4">
               {approachData.map((item, index) => (
                 <button
                   key={index}
                   onClick={() => setSelected(index)}
-                  className={`
-                    text-left px-4 py-3 rounded-xl font-semibold transition-all duration-300
-                    ${
-                      selected === index
-                        ? "bg-[#DC143C] text-white shadow-lg scale-[1.05]"
-                        : darkMode
-                        ? "bg-gray-700/40 hover:bg-gray-700/60"
-                        : "bg-gray-100 hover:bg-gray-200"
-                    }
-                  `}
+                  className={`text-left px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                    selected === index
+                      ? "bg-[#DC143C] text-white shadow-lg scale-[1.05]"
+                      : "bg-gray-100 hover:bg-gray-200 dark:bg-gray-100 dark:hover:bg-gray-200"
+                  }`}
                 >
                   {item.title}
                 </button>
@@ -142,23 +113,14 @@ streamlining operations, structuring finances, building strong teams and finding
           </div>
 
           {/* ---------- RIGHT SIDE DYNAMIC CARD ---------- */}
-          <div
-            className={`
-              md:col-span-2 rounded-2xl shadow-xl overflow-hidden 
-              backdrop-blur-md transition-all duration-500
-              ${darkMode ? "bg-gray-800/50" : "bg-white/90"}
-            `}
-          >
+          <div className="md:col-span-2 rounded-2xl shadow-xl overflow-hidden backdrop-blur-md transition-all duration-500 bg-white/90 dark:bg-white/90">
             {/* Image */}
             <div className="flex justify-center py-6">
               <img
                 key={approachData[selected].img}
                 src={approachData[selected].img}
                 alt="approach-img"
-                className="
-                  w-2/3 h-56 object-cover rounded-xl shadow-md
-                  transition-all duration-700 ease-out
-                "
+                className="w-2/3 h-56 object-cover rounded-xl shadow-md transition-all duration-700 ease-out"
               />
             </div>
 
@@ -167,7 +129,6 @@ streamlining operations, structuring finances, building strong teams and finding
               <h3 className="text-3xl font-bold text-[#DC143C] mb-4">
                 {approachData[selected].title}
               </h3>
-
               <ul className="text-lg leading-relaxed opacity-90 list-disc list-inside space-y-2">
                 {approachData[selected].points.map((p, i) => (
                   <li key={i}>{p}</li>

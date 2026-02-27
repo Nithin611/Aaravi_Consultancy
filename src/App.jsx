@@ -20,13 +20,14 @@ import FAQ from "./FAQ";
 import Services from "./Service";
 import Footer from "./Footer";
 import WhyUs from "./whyus";
+import BusinessIncorporation from "./services/startup/BusinessIncorporation";
 /* ----------------- Reusable Components ----------------- */
 
 const Button = ({ children, className = "", variant, ...props }) => {
   const base = "px-6 py-3 rounded-xl font-medium transition";
   const styles =
     variant === "outline"
-      ? "border border-red-300 text-red-900 hover:bg-red-50 dark:text-red-300 dark:hover:bg-gray-800"
+      ? "border border-red-300 text-red-900 hover:bg-red-50 dark:text-red-900 dark:hover:bg-red-50"
       : "bg-red-900 hover:bg-red-700 text-white";
   return (
     <button className={`${base} ${styles} ${className}`} {...props}>
@@ -36,15 +37,15 @@ const Button = ({ children, className = "", variant, ...props }) => {
 };
 
 const GlassCard = ({ icon, title, desc }) => (
-  <div className="w-[320px] h-[140px] rounded-3xl bg-white/70 dark:bg-black/50 backdrop-blur-xl border border-white/40 shadow-[0_20px_40px_rgba(220,38,38,0.25)] flex transition hover:-translate-y-2">
+  <div className="w-[320px] h-[140px] rounded-3xl bg-white/70 dark:bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_20px_40px_rgba(220,38,38,0.25)] flex transition hover:-translate-y-2">
     <div className="w-1/3 flex items-center justify-center text-red-900">
       {icon}
     </div>
     <div className="w-2/3 flex flex-col justify-center pr-6">
-      <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+      <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-900">
         {title}
       </h3>
-      <p className="text-sm text-gray-700 dark:text-gray-300">{desc}</p>
+      <p className="text-sm text-gray-700 dark:text-gray-700">{desc}</p>
     </div>
   </div>
 );
@@ -133,12 +134,12 @@ const Home = () => {
       {/* HERO */}
       <section className="container mx-auto px-6 pt-40 pb-24 grid md:grid-cols-2 gap-12 items-center">
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-900">
             Strategic Thinking
             <span className="block text-red-900">Measurable Growth</span>
           </h1>
 
-          <p className="mt-6 text-lg text-gray-800 dark:text-gray-300">
+          <p className="mt-6 text-lg text-gray-800 dark:text-gray-800">
             Aaravi Consulting partners with organizations to unlock sustainable
             growth through expert Financial, Marketing, and HR consulting solutions.
           </p>
@@ -164,7 +165,7 @@ const Home = () => {
           Consulting That Delivers Real Business Impact
         </h2>
 
-        <p className="mt-4 max-w-3xl mx-auto text-gray-700 dark:text-white">
+        <p className="mt-4 max-w-3xl mx-auto text-gray-700 dark:text-gray-700">
           We combine strategic insight, industry expertise, and data-driven execution.
         </p>
 
@@ -174,10 +175,10 @@ const Home = () => {
             { title: "Marketing Consulting", desc: "Driving brand growth and market positioning." },
             { title: "HR Consulting", desc: "Building high-performing teams." },
           ].map((item) => (
-            <Card key={item.title} className="bg-white/80 dark:bg-gray-800">
+            <Card key={item.title} className="bg-white/80 dark:bg-white/80">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-red-900">{item.title}</h3>
-                <p className="mt-2 text-gray-700 dark:text-white">{item.desc}</p>
+                <p className="mt-2 text-gray-700 dark:text-gray-700">{item.desc}</p>
               </CardContent>
             </Card>
           ))}
@@ -238,14 +239,14 @@ const Home = () => {
       </section>
 
       {/* Why Aaravi */}
-      <section className="py-20 text-center bg-gray-100 dark:bg-gray-900">
+      <section className="py-20 text-center bg-gray-100 dark:bg-gray-100">
         <h2 className="text-3xl font-semibold mb-10">Why Businesses Choose Aaravi</h2>
         <div className="grid md:grid-cols-5 gap-4">
           {["Industry Experts", "Tailored Strategies", "Proven Results", "Clear KPIs", "Client Focused"].map(
             (text) => (
               <div key={text} className="flex flex-col items-center gap-2">
                 <CheckCircle className="text-red-900" />
-                <span className="text-sm text-gray-700 dark:text-white">{text}</span>
+                <span className="text-sm text-gray-700 dark:text-gray-700">{text}</span>
               </div>
             )
           )}
@@ -255,7 +256,7 @@ const Home = () => {
       {/* CTA */}
       <section className="container mx-auto px-6 py-24 text-center">
         <h2 className="text-4xl font-bold">Ready to Transform Your Business?</h2>
-        <p className="mt-4 text-gray-700 dark:text-white">
+        <p className="mt-4 text-gray-700 dark:text-gray-700">
           Let’s build smarter strategies and sustainable growth together.
         </p>
         <Button className="mt-8">Schedule Your Consultation</Button>
@@ -268,21 +269,6 @@ const Home = () => {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  /* ---------- LOAD THEME ---------- */
-  useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const isDark = stored === "dark";
-    setDarkMode(isDark);
-    document.documentElement.classList.toggle("dark", isDark);
-  }, []);
-
-  /* ---------- APPLY THEME ---------- */
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
 
   /* ⭐ ADDED: SERVICE SUBMENU FOR MOBILE */
   const [serviceMobileOpen, setServiceMobileOpen] = useState(false);
@@ -298,8 +284,24 @@ export default function App() {
 
     return () => clearTimeout(timer);
   }, []);
+  const [openService, setOpenService] = useState(null);
 
+  const toggleService = (service) => {
+    setOpenService(openService === service ? null : service);
+  };
+  const [openMobileService, setOpenMobileService] = useState(null);
 
+const toggleMobileService = (service) => {
+  setOpenMobileService(openMobileService === service ? null : service);
+};
+
+useEffect(() => {
+  if (menuOpen) {
+    document.body.style.overflow = "hidden";   // stop background scroll
+  } else {
+    document.body.style.overflow = "auto";     // restore scroll
+  }
+}, [menuOpen]);
   return (
     <> {showLoader ? (<div className="flex items-center justify-center h-screen w-screen bg-white">
     <img
@@ -315,18 +317,16 @@ export default function App() {
     />
   </div>):(
     <div
-      className="min-h-screen text-gray-900 dark:text-white transition-colors duration-300"
+      className="min-h-screen text-gray-900 dark:text-gray-900 transition-colors duration-300"
       style={{
-        backgroundImage: darkMode
-          ? "url('./images/dark_background_img.png')"
-          : "url('./images/image1.jpeg')",
+        backgroundImage: "url('./images/image1.jpeg')",
         backgroundRepeat: "repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
     >
 {/* NAVBAR */}
-<nav className="fixed top-0 w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur border-b">
+<nav className="fixed top-0 w-full z-50 bg-white/90 dark:bg-white/90 backdrop-blur border-b">
   <div className="container mx-auto px-6 py-4 flex justify-between items-center">
     <img src="./images/logo.png" alt="Aaravi" className="h-12" />
 
@@ -349,35 +349,165 @@ export default function App() {
     Services
   </Link>
 
-        {serviceHover && (
-          <div className="absolute left-0 mt-2 bg-white dark:bg-gray-800 shadow-xl rounded-lg w-56 p-2 z-50">
-            <Link className="block px-4 py-2 hover:bg-red-100 dark:hover:bg-gray-700 rounded"
-              to="/services?type=accounting">Accounting</Link>
+  {serviceHover && (
+  <div className="absolute left-0 mt-2 bg-white dark:bg-white shadow-xl rounded-lg w-64 p-2 z-50">
+    {/* Startup Advisory */}
+    <div className="mt-1">
+      <div
+        className="flex justify-between items-center px-4 py-2 
+                   hover:bg-red-100 dark:hover:hover:bg-red-100 rounded cursor-pointer"
+        onClick={() => toggleService("startup")}
+      >
+        <span>Startup Advisory</span>
+        <span className={`transform transition-transform duration-200 
+          ${openService === "startup" ? "rotate-180" : ""}`}>
+          ▼
+        </span>
+      </div>
+      {openService === "startup" && (
+        <div className="ml-4 mt-1">
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/startup/BusinessIncorporation">Business Incorporation</Link>
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/startup/registrations">Regulatory Registrations</Link>
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/startup/esop">ESOP Structuring</Link>
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/startup/risk">Risk Advisory</Link>
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/startup/vcfo">Virtual CFO Services</Link>
+        </div>
+      )}
+    </div>
 
-            <Link className="block px-4 py-2 hover:bg-red-100 dark:hover:bg-gray-700 rounded"
-              to="/services?type=tax">Tax Advisory</Link>
+    {/* Taxation & Compliance */}
+    <div className="mt-1">
+      <div
+        className="flex justify-between items-center px-4 py-2 
+                   hover:bg-red-100 dark:hover:bg-red-100 rounded cursor-pointer"
+        onClick={() => toggleService("tax")}
+      >
+        <span>Taxation & Compliance</span>
+        <span className={`transform transition-transform duration-200 
+          ${openService === "tax" ? "rotate-180" : ""}`}>
+          ▼
+        </span>
+      </div>
 
-            <Link className="block px-4 py-2 hover:bg-red-100 dark:hover:bg-gray-700 rounded"
-              to="/services?type=financial">Financial Planning</Link>
+      {openService === "tax" && (
+        <div className="ml-4 mt-1">
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/tax/gst">GST Filing</Link>
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/tax/income-tax">Income Tax Planning</Link>
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/tax/tds">TDS Return</Link>
+        </div>
+      )}
+    </div>
 
-            <Link className="block px-4 py-2 hover:bg-red-100 dark:hover:bg-gray-700 rounded"
-              to="/services?type=business">Business Consulting</Link>
+    {/* Financial Services */}
+    <div className="mt-1">
+      <div
+        className="flex justify-between items-center px-4 py-2 
+                   hover:bg-red-100 dark:hover:bg-red-100 rounded cursor-pointer"
+        onClick={() => toggleService("financial")}
+      >
+        <span>Financial Services</span>
+        <span className={`transform transition-transform duration-200 
+          ${openService === "financial" ? "rotate-180" : ""}`}>
+          ▼
+        </span>
+      </div>
 
-            <Link className="block px-4 py-2 hover:bg-red-100 dark:hover:bg-gray-700 rounded"
-              to="/services?type=talent">Talent Acquisition</Link>
-          </div>
-        )}
+      {openService === "financial" && (
+        <div className="ml-4 mt-1">
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/financial/bookkeeping">Bookkeeping</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/financial/revenue">Revenue Leakage Assessments</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/financial/integrity">Accounts Integrity</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/financial/internal-control">Internal Control Assessments</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/financial/inventory">Inventory Accuracy & Aging Report</Link>
+        </div>
+      )}
+    </div>
+
+    {/* Growth Advisory */}
+    <div className="mt-1">
+      <div
+        className="flex justify-between items-center px-4 py-2 
+                   hover:bg-red-100 dark:hover:bg-red-100 rounded cursor-pointer"
+        onClick={() => toggleService("growth")}
+      >
+        <span>Growth Advisory</span>
+        <span className={`transform transition-transform duration-200 
+          ${openService === "growth" ? "rotate-180" : ""}`}>
+          ▼
+        </span>
+      </div>
+
+      {openService === "growth" && (
+        <div className="ml-4 mt-1">
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/growth/pmf">PMF Consulting (Product Market Fit)</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/growth/cost">Cost Reduction Advisory</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/growth/strategy">Growth Strategy</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/growth/competitive-analysis">Competitive Analysis</Link>
+        </div>
+      )}
+    </div>
+
+    {/* HR Consulting */}
+    <div className="mt-1">
+      <div
+        className="flex justify-between items-center px-4 py-2 
+                   hover:bg-red-100 dark:hover:bg-red-100 rounded cursor-pointer"
+        onClick={() => toggleService("hr")}
+      >
+        <span>HR Consulting</span>
+        <span className={`transform transition-transform duration-200 
+          ${openService === "hr" ? "rotate-180" : ""}`}>
+          ▼
+        </span>
+      </div>
+
+      {openService === "hr" && (
+        <div className="ml-4 mt-1">
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/hr/talent-acquisition">Talent Acquisition Consulting</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/hr/rpo">Recruitment Process Outsourcing</Link>
+
+          <Link className="block px-4 py-1 hover:bg-red-100 dark:hover:bg-red-100 rounded"
+            to="/services/hr/role-architecture">Role Architecture & Designing</Link>
+        </div>
+      )}
+    </div>
+  </div>
+)}
       </div>
 
       <Link to="/faq" className="hover:text-red-600">FAQ</Link>
       <Link to="/contactus" className="hover:text-red-600">Contact</Link>
     </ul>
 
-    {/* DARK MODE + HAMBURGER */}
+    {/* HAMBURGER */}
     <div className="flex items-center gap-4">
-      <button onClick={() => setDarkMode(!darkMode)}>
-        {darkMode ? <Sun /> : <Moon />}
-      </button>
       <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <X /> : <Menu />}
       </button>
@@ -394,7 +524,7 @@ export default function App() {
     ></div>
 
     {/* Mobile Menu Panel */}
-    <div className="md:hidden fixed top-20 left-0 w-full bg-white dark:bg-gray-900 shadow-xl z-50 border-t">
+    <div className="md:hidden fixed top-20 left-0 w-full bg-white dark:bg-white shadow-xl z-50 border-t max-h-[80vh] overflow-y-auto">
       <ul className="flex flex-col gap-4 p-6 text-lg font-medium">
 
         <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
@@ -438,50 +568,189 @@ export default function App() {
 
         {/* Dropdown Items */}
         {serviceMobileOpen && (
-          <div className="pl-4 flex flex-col gap-3 text-base mt-2">
+  <div className="pl-4 flex flex-col gap-3 text-base mt-2 
+  max-h-[80vh] overflow-y-auto scroll-smooth pr-3">
 
-            <Link to="/services?type=accounting" onClick={() => setMenuOpen(false)}>
-              Accounting
-            </Link>
+    {/* Startup Advisory */}
+    <div>
+      <div className="flex justify-between items-center">
+        <Link 
+          to="/services?type=accounting"
+          onClick={() => setMenuOpen(false)}
+        >
+          Startup Advisory
+        </Link>
 
-            <Link to="/services?type=tax" onClick={() => setMenuOpen(false)}>
-              Tax Advisory
-            </Link>
+        <span 
+          className={`cursor-pointer ml-2 transform transition-transform duration-200 
+            ${openMobileService === "startup" ? "rotate-180" : ""}`}
+          onClick={() => toggleMobileService("startup")}
+        >
+          ▼
+        </span>
+      </div>
 
-            <Link to="/services?type=financial" onClick={() => setMenuOpen(false)}>
-              Financial Planning
-            </Link>
+      {openMobileService === "startup" && (
+        <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
 
-            <Link to="/services?type=business" onClick={() => setMenuOpen(false)}>
-              Business Consulting
-            </Link>
+          <Link to="/services/startup/business-inc" onClick={() => setMenuOpen(false)}>
+            Business Incorporation
+          </Link>
 
-            <Link to="/services?type=talent" onClick={() => setMenuOpen(false)}>
-              Talent Acquisition
-            </Link>
-          </div>
-        )}
+          <Link to="/services/startup/registrations" onClick={() => setMenuOpen(false)}>
+            Regulatory Registrations
+          </Link>
 
+          <Link to="/services/startup/esop" onClick={() => setMenuOpen(false)}>
+            ESOP Structuring
+          </Link>
+
+          <Link to="/services/startup/risk" onClick={() => setMenuOpen(false)}>
+            Risk Advisory
+          </Link>
+
+          <Link to="/services/startup/vcfo" onClick={() => setMenuOpen(false)}>
+            Virtual CFO Services
+          </Link>
+        </div>
+      )}
+    </div>
+
+
+    {/* Taxation & Compliance */}
+    <div>
+      <div className="flex justify-between items-center">
+        <Link 
+          to="/services?type=tax"
+          onClick={() => setMenuOpen(false)}
+        >
+          Taxation & Compliance
+        </Link>
+        <span 
+          className={`cursor-pointer ml-2 transform transition-transform duration-200 
+            ${openMobileService === "tax" ? "rotate-180" : ""}`}
+          onClick={() => toggleMobileService("tax")}
+        >
+          ▼
+        </span>
+      </div>
+
+      {openMobileService === "tax" && (
+        <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
+          <Link to="/services/tax/gst" onClick={() => setMenuOpen(false)}>GST Filing</Link>
+          <Link to="/services/tax/income-tax" onClick={() => setMenuOpen(false)}>Income Tax Planning</Link>
+          <Link to="/services/tax/tds" onClick={() => setMenuOpen(false)}>TDS Return</Link>
+        </div>
+      )}
+    </div>
+
+
+    {/* Financial Services */}
+    <div>
+      <div className="flex justify-between items-center">
+        <Link 
+          to="/services?type=financial"
+          onClick={() => setMenuOpen(false)}
+        >
+          Financial Services
+        </Link>
+        <span 
+          className={`cursor-pointer ml-2 transform transition-transform duration-200 
+            ${openMobileService === "financial" ? "rotate-180" : ""}`}
+          onClick={() => toggleMobileService("financial")}
+        >
+          ▼
+        </span>
+      </div>
+
+      {openMobileService === "financial" && (
+        <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
+          <Link to="/services/financial/bookkeeping" onClick={() => setMenuOpen(false)}>Bookkeeping</Link>
+          <Link to="/services/financial/revenue" onClick={() => setMenuOpen(false)}>Revenue Leakage Assessments</Link>
+          <Link to="/services/financial/integrity" onClick={() => setMenuOpen(false)}>Accounts Integrity</Link>
+          <Link to="/services/financial/internal-control" onClick={() => setMenuOpen(false)}>Internal Control Assessments</Link>
+          <Link to="/services/financial/inventory" onClick={() => setMenuOpen(false)}>Inventory Accuracy & Aging Report</Link>
+        </div>
+      )}
+    </div>
+
+
+    {/* Growth Advisory */}
+    <div>
+      <div className="flex justify-between items-center">
+        <Link 
+          to="/services?type=business"
+          onClick={() => setMenuOpen(false)}
+        >
+          Growth Advisory
+        </Link>
+        <span 
+          className={`cursor-pointer ml-2 transform transition-transform duration-200 
+            ${openMobileService === "growth" ? "rotate-180" : ""}`}
+          onClick={() => toggleMobileService("growth")}
+        >
+          ▼
+        </span>
+      </div>
+
+      {openMobileService === "growth" && (
+        <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
+          <Link to="/services/growth/pmf" onClick={() => setMenuOpen(false)}>PMF Consulting</Link>
+          <Link to="/services/growth/cost" onClick={() => setMenuOpen(false)}>Cost Reduction Advisory</Link>
+          <Link to="/services/growth/strategy" onClick={() => setMenuOpen(false)}>Growth Strategy</Link>
+          <Link to="/services/growth/competitive-analysis" onClick={() => setMenuOpen(false)}>Competitive Analysis</Link>
+        </div>
+      )}
+    </div>
+
+
+    {/* HR Consulting */}
+    <div>
+      <div className="flex justify-between items-center">
+        <Link 
+          to="/services?type=talent"
+          onClick={() => setMenuOpen(false)}
+        >
+          HR Consulting
+        </Link>
+        <span 
+          className={`cursor-pointer ml-2 transform transition-transform duration-200 
+            ${openMobileService === "hr" ? "rotate-180" : ""}`}
+          onClick={() => toggleMobileService("hr")}
+        >
+          ▼
+        </span>
+      </div>
+
+      {openMobileService === "hr" && (
+        <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
+          <Link to="/services/hr/talent-acquisition" onClick={() => setMenuOpen(false)}>Talent Acquisition Consulting</Link>
+          <Link to="/services/hr/rpo" onClick={() => setMenuOpen(false)}>Recruitment Process Outsourcing</Link>
+          <Link to="/services/hr/role-architecture" onClick={() => setMenuOpen(false)}>Role Architecture & Designing</Link>
+        </div>
+      )}
+    </div>
+
+  </div>
+)}
         <Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
         <Link to="/contactus" onClick={() => setMenuOpen(false)}>Contact</Link>
       </ul>
     </div>
   </>
 )}
-
-
 </nav>
       {/* ROUTES */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services darkMode={darkMode} />} />
-        <Route path="/about" element={<ABOUT darkMode={darkMode} />} />
-        <Route path="/Whyus" element={<WhyUs darkMode={darkMode} />} />
-        <Route path="/faq" element={<FAQ darkMode={darkMode} />} />
-        <Route path="/contactus" element={<ContactUs darkMode={darkMode} />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/startup/BusinessIncorporation" element={<BusinessIncorporation />}/>
+        <Route path="/about" element={<ABOUT />} />
+        <Route path="/Whyus" element={<WhyUs />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
-
-      <Footer darkMode={darkMode} />
+      <Footer />
     </div>
     )}
     </>
