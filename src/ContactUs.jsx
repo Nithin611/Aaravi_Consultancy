@@ -72,7 +72,7 @@ const ContactUs = () => {
     const message = e.target.message.value;
 
     try {
-      const response = await fetch("http://localhost:8080/contact", {
+      const response = await fetch("https://aaravibackend-production.up.railway.app/api/mail/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
