@@ -72,7 +72,7 @@ const ContactUs = () => {
     const message = e.target.message.value;
 
     try {
-      const response = await fetch("https://aaravibackend-production.up.railway.app/api/mail/send", {
+      const response = await fetch("https://project-6851824b-a66a-4a93-b68.df.r.appspot.com/api/mail/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -175,7 +175,7 @@ const ContactUs = () => {
               onChange={handleInputChange}
             />
 
-            <label style={labelStyle()}>Phone Number (Optional):</label>
+            <label style={labelStyle()}>Phone Number</label>
             <input
               name="phoneNumber"
               type="text"
