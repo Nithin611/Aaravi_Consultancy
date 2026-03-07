@@ -6,10 +6,10 @@ export default function IncomeTaxServices() {
     <div className="bg-rose-50">
 
       {/* HERO */}
-      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white px-6 md:px-16 py-20">
+      <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white px-6 md:px-16 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          <div>
+          <div className="pt-10 md:pt-0">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Income Tax Planning & Filing
             </h1>
@@ -101,7 +101,7 @@ export default function IncomeTaxServices() {
 
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white text-center px-6 md:px-16 py-16">
+      <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white text-center px-6 md:px-16 py-16">
 
         <h2 className="text-3xl font-bold mb-4">
           Need Help With Income Tax Filing?

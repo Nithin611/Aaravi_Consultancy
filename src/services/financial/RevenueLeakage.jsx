@@ -16,34 +16,37 @@ export default function RevenueLeakage() {
     <div className="bg-rose-50">
 
       {/* HERO SECTION */}
-      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white px-6 md:px-16 py-20">
+      <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white px-6 md:px-16 py-20">
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          <div>
+          {/* TEXT */}
+          <div className="mt-10 md:mt-0 text-center md:text-left">
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
               Revenue Leakage & Profitability Diagnostics
             </h1>
 
-            <p className="text-lg mb-6">
+            <p className="text-base md:text-lg mb-6">
               Identify hidden financial erosion and improve profitability
               through structured financial diagnostics.
             </p>
 
-            <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold">
+            <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold w-full sm:w-auto">
               Start Assessment
             </button>
 
           </div>
 
           {/* IMAGE */}
-          <div className="mt-10 overflow-hidden rounded-xl shadow-xl">
+          <div className="mt-10 md:mt-12 overflow-hidden rounded-xl shadow-xl">
+
             <img
-                src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80"
-                alt="Revenue analytics dashboard"
-                className="w-full h-[360px] object-cover"
+              src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80"
+              alt="Revenue analytics dashboard"
+              className="w-full h-[260px] sm:h-[320px] md:h-[360px] object-cover"
             />
+
           </div>
 
         </div>
@@ -54,20 +57,20 @@ export default function RevenueLeakage() {
       {/* SERVICES */}
       <section className="px-6 md:px-16 py-16">
 
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
           Our Diagnostics Process
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
           {services.map((service, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="bg-white p-6 rounded-xl shadow hover:shadow-xl"
+              className="bg-white p-6 rounded-xl shadow hover:shadow-xl text-center"
             >
 
-              <LineChart className="text-rose-600 mb-4" size={32}/>
+              <LineChart className="text-rose-600 mb-4 mx-auto" size={32}/>
               <p>{service}</p>
 
             </motion.div>
@@ -78,14 +81,14 @@ export default function RevenueLeakage() {
       </section>
 
 
-      {/* WHY CHOOSE AARAVI */}
+      {/* WHY CHOOSE */}
       <section className="bg-white px-6 md:px-16 py-16 text-center">
 
-        <h2 className="text-3xl font-bold mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold mb-12">
           Why Choose Aaravi for Revenue Diagnostics?
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
           <div>
             <ShieldCheck className="text-rose-600 mx-auto mb-4" size={36}/>
@@ -117,9 +120,9 @@ export default function RevenueLeakage() {
 
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white text-center py-16">
+      <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white text-center py-16 px-6">
 
-        <h2 className="text-3xl font-bold mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">
           Stop Silent Revenue Loss
         </h2>
 
@@ -127,7 +130,7 @@ export default function RevenueLeakage() {
           Improve profitability with expert diagnostics.
         </p>
 
-        <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold">
+        <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold w-full sm:w-auto">
           Book Consultation
         </button>
 

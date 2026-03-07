@@ -376,7 +376,7 @@ useEffect(() => {
   return (
     <> {showLoader ? (<div className="flex items-center justify-center h-screen w-screen bg-white">
     <img
-      src="./images/logo.png"
+      src="/images/logo.png"
       alt="Loading"
       className="animate-pulse"
       style={{
@@ -400,7 +400,7 @@ useEffect(() => {
 {/* NAVBAR */}
 <nav className="fixed top-0 w-full z-50 bg-white/90 dark:bg-white/90 backdrop-blur border-b">
   <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-    <img src="./images/logo.png" alt="Aaravi" className="h-12" />
+    <img src="/images/logo.png" alt="Aaravi" className="h-12" />
 
     {/* ---------- DESKTOP MENU ---------- */}
     <ul className="hidden md:flex gap-8 text-lg font-medium items-center">

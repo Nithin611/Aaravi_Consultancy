@@ -6,10 +6,11 @@ export default function TdsCompliance() {
     <div className="bg-rose-50">
 
       {/* HERO */}
-      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white px-6 md:px-16 py-20">
+      <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white px-6 md:px-16 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          <div>
+          {/* TEXT */}
+          <div className="pt-10 md:pt-0">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               TDS Return Filing & Compliance
             </h1>
@@ -24,6 +25,7 @@ export default function TdsCompliance() {
             </button>
           </div>
 
+          {/* IMAGE */}
           <div className="mt-10">
             <img
               src="https://images.unsplash.com/photo-1554224154-22dec7ec8818"
@@ -101,7 +103,7 @@ export default function TdsCompliance() {
 
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white text-center px-6 md:px-16 py-16">
+      <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white text-center px-6 md:px-16 py-16">
 
         <h2 className="text-3xl font-bold mb-4">
           Need Help With TDS Compliance?
