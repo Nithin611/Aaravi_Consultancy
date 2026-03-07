@@ -21,6 +21,14 @@ import Services from "./Service";
 import Footer from "./Footer";
 import WhyUs from "./whyus";
 import BusinessIncorporation from "./services/startup/BusinessIncorporation";
+import GstServices from "./services/tax/GSTFiling"
+import IncomeTaxServices from "./services/tax/IncomeTaxPlanning"
+import TdsCompliance from "./services/tax/TDSReturn"
+import AccountIntegrity from "./services/financial/AccountsIntegrity"
+import BookkeepingArchitecture from "./services/financial/Bookkeeping"
+import InternalControl from "./services/financial/InternalControl";
+import InventoryIntelligence from "./services/financial/InventoryAccuracy";
+import RevenueLeakage from "./services/financial/RevenueLeakage";
 /* ----------------- Reusable Components ----------------- */
 
 const Button = ({ children, className = "", variant, ...props }) => {
@@ -151,14 +159,25 @@ const Home = () => {
             </Link>
           </div>
         </motion.div>
-
-        <div className="space-y-6">
-          <GlassCard icon={<Briefcase size={28} />} title="Financial Strategy" desc="Value-focused financial planning." />
+        <div>
+                    {/* RIGHT IMAGE (NEW) */}
+        <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.6 }}
+    className="flex justify-center md:justify-end"
+  >
+    <img
+      src="./images/Home_img2.png"
+      alt="Thinking about consulting services"
+      className="w-full max-w-md object-contain drop-shadow-xl"
+    />
+  </motion.div>
+          {/* <GlassCard icon={<Briefcase size={28} />} title="Financial Strategy" desc="Value-focused financial planning." />
           <GlassCard icon={<TrendingUp size={32} />} title="Marketing Solutions" desc="Branding & growth strategy." />
-          <GlassCard icon={<Users size={28} />} title="HR Consulting" desc="People & leadership excellence." />
+          <GlassCard icon={<Users size={28} />} title="HR Consulting" desc="People & leadership excellence." /> */}
         </div>
       </section>
-
       {/* WHAT WE DO */}
       <section className="container mx-auto px-6 py-20 text-center">
         <h2 className="text-3xl md:text-4xl font-semibold">
@@ -184,7 +203,59 @@ const Home = () => {
           ))}
         </div>
       </section>
+           {/* HOW IT WORKS */}
+<section className="container mx-auto px-6 py-24">
+  <motion.h2
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="text-3xl md:text-4xl font-semibold text-center"
+  >
+    How It Works <span className="block text-red-900">Our Proven Process</span>
+  </motion.h2>
 
+  <div className="mt-16 grid md:grid-cols-4 gap-10">
+    {[
+      {
+        number: "01",
+        title: "Strategic Discovery",
+        desc: `We deeply understand your vision, structure, and long-term goals to ensure every recommendation is aligned with your business objectives.`,
+      },
+      {
+        number: "02",
+        title: "Tailored Structural Blueprint",
+        desc: `We design a customized roadmap covering entity setup, compliance, financial strategy, and scalable growth planning.`,
+      },
+      {
+        number: "03",
+        title: "Hands-On Implementation",
+        desc: `We work directly with you to execute restructuring, governance, financial systems, and more with seamless precision.`,
+      },
+      {
+        number: "04",
+        title: "Scale, Optimize & Protect",
+        desc: `As your business evolves, we refine structures, improve efficiency, reduce risks, and position you for long-term expansion.`,
+      },
+    ].map((step, index) => (
+      <motion.div
+        key={step.number}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.2 }}
+        viewport={{ once: true }}
+        className="relative p-8 rounded-3xl bg-white shadow-xl border border-red-900/10 hover:shadow-2xl 
+                   hover:-translate-y-2 transition-all duration-300"
+      >
+        <div className="text-5xl font-bold text-red-900 opacity-20 absolute -top-4 right-4">
+          {step.number}
+        </div>
+
+        <h3 className="text-xl font-semibold text-gray-900 mt-4">{step.title}</h3>
+        <p className="mt-4 text-gray-700 leading-relaxed">{step.desc}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
       {/* How can we assist */}
       <section className="relative bg-white/90 backdrop-blur-md">
         <div className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-16">
@@ -319,10 +390,11 @@ useEffect(() => {
     <div
       className="min-h-screen text-gray-900 dark:text-gray-900 transition-colors duration-300"
       style={{
-        backgroundImage: "url('./images/image1.jpeg')",
-        backgroundRepeat: "repeat",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
+        background: "linear-gradient(135deg, #FDEBED 0%, #F8D7DA 100%)"
+        // backgroundImage: "url('./images/image1.jpeg')",
+        // backgroundRepeat: "repeat",
+        // backgroundPosition: "center",
+        // backgroundSize: "cover",
       }}
     >
 {/* NAVBAR */}
@@ -745,6 +817,14 @@ useEffect(() => {
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/startup/BusinessIncorporation" element={<BusinessIncorporation />}/>
+        <Route path="/services/tax/gst" element={<GstServices/>}/>
+        <Route path="/services/tax/income-tax" element={<IncomeTaxServices/>}/>
+        <Route path="/services/tax/tds" element={<TdsCompliance/>}/>
+        <Route path="/services/financial/integrity" element={<AccountIntegrity/>}/>
+        <Route path="/services/financial/bookkeeping" element={<BookkeepingArchitecture/>}/>
+        <Route path="/services/financial/internal-control" element={<InternalControl/>}/>
+        <Route path="/services/financial/inventory" element={<InventoryIntelligence/>}/>
+        <Route path="/services/financial/revenue" element={<RevenueLeakage/>}/>
         <Route path="/about" element={<ABOUT />} />
         <Route path="/Whyus" element={<WhyUs />} />
         <Route path="/faq" element={<FAQ />} />

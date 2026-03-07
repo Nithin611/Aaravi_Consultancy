@@ -1,0 +1,121 @@
+import { motion } from "framer-motion";
+import { TrendingUp, ShieldCheck, Clock, BadgeCheck } from "lucide-react";
+
+export default function AccountIntegrity() {
+
+  const services = [
+    "Financial Strategy & Budgeting",
+    "Forecasting & Scenario Modelling",
+    "Fundraising Financial Preparation",
+    "Unit Economics Analysis",
+    "Burn Rate & Runway Planning",
+    "Investor Reporting Dashboards"
+  ];
+
+  return (
+    <div className="bg-rose-50">
+
+      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white px-6 md:px-16 py-20">
+
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+
+          <div>
+
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Virtual CFO & Strategic Finance Leadership
+            </h1>
+
+            <p className="text-lg mb-6">
+              Board-level financial insight without the cost of a full-time CFO.
+              We help startups optimise capital allocation and financial strategy.
+            </p>
+
+            <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold">
+              Schedule Consultation
+            </button>
+
+          </div>
+
+          <div className="mt-10 overflow-hidden rounded-xl shadow-xl">
+            <img
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+              alt="Virtual CFO services"
+              className="w-full h-[360px] object-cover"
+            />
+          </div>
+
+        </div>
+
+      </section>
+
+      <section className="px-6 md:px-16 py-16">
+
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Strategic Finance Services
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+
+          {services.map((service, index) => (
+            <motion.div key={index} whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-xl shadow">
+
+              <TrendingUp className="text-rose-600 mb-4" size={32}/>
+              <p>{service}</p>
+
+            </motion.div>
+          ))}
+
+        </div>
+
+      </section>
+
+      <section className="bg-white px-6 md:px-16 py-16 text-center">
+
+        <h2 className="text-3xl font-bold mb-12">
+          Why Choose Aaravi?
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+
+          <div>
+            <ShieldCheck className="text-rose-600 mx-auto mb-4" size={36}/>
+            <h3 className="font-semibold mb-2">Strategic Expertise</h3>
+            <p className="text-gray-600">Experienced finance professionals.</p>
+          </div>
+
+          <div>
+            <Clock className="text-rose-600 mx-auto mb-4" size={36}/>
+            <h3 className="font-semibold mb-2">Cost Efficient</h3>
+            <p className="text-gray-600">CFO-level insight without full-time cost.</p>
+          </div>
+
+          <div>
+            <BadgeCheck className="text-rose-600 mx-auto mb-4" size={36}/>
+            <h3 className="font-semibold mb-2">Investor Ready</h3>
+            <p className="text-gray-600">Prepare your business for funding.</p>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section className="bg-gradient-to-r from-rose-600 to-red-300 text-white text-center py-16">
+
+        <h2 className="text-3xl font-bold mb-4">
+          Need Strategic Financial Leadership?
+        </h2>
+
+        <p className="mb-6">
+          Partner with Aaravi's Virtual CFO experts.
+        </p>
+
+        <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold">
+          Contact Us
+        </button>
+
+      </section>
+
+    </div>
+  );
+}
