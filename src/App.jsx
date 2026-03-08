@@ -667,7 +667,7 @@ useEffect(() => {
       {openMobileService === "startup" && (
         <div className="ml-4 mt-2 flex flex-col gap-2 text-sm">
 
-          <Link to="/services/startup/business-inc" onClick={() => setMenuOpen(false)}>
+          <Link to="/services/startup/BusinessIncorporation" onClick={() => setMenuOpen(false)}>
             Business Incorporation
           </Link>
 
