@@ -38,7 +38,7 @@ export default function RevenueLeakage() {
 
           </div>
 
-          {/* IMAGE */}
+          {/* HERO IMAGE */}
           <div className="mt-10 md:mt-12 overflow-hidden rounded-xl shadow-xl">
 
             <img
@@ -75,6 +75,64 @@ export default function RevenueLeakage() {
 
             </motion.div>
           ))}
+
+        </div>
+
+      </section>
+
+
+      {/* BILLING & REVENUE REVIEW IMAGE */}
+      <section className="px-6 md:px-16 py-16">
+
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <img
+            src="https://images.unsplash.com/photo-1554224154-26032ffc0d07"
+            alt="Revenue billing review"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Revenue Process Evaluation
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Revenue leakage often occurs due to weaknesses in pricing,
+              billing systems, or collection processes. Our diagnostics
+              evaluate the entire contract-to-cash cycle to identify
+              gaps that impact profitability and financial performance.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* PROFITABILITY ANALYTICS IMAGE */}
+      <section className="px-6 md:px-16 py-16 bg-white">
+
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Profitability & Margin Intelligence
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Our margin diagnostics identify pricing inefficiencies,
+              operational gaps, and cost leakages that silently reduce
+              profitability. We design monitoring frameworks that help
+              businesses track revenue performance and protect margins.
+            </p>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+            alt="Profitability analysis meeting"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
 
         </div>
 

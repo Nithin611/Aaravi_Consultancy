@@ -21,10 +21,12 @@ import Services from "./Service";
 import Footer from "./Footer";
 import WhyUs from "./whyus";
 import BusinessIncorporation from "./services/startup/BusinessIncorporation";
+import EsopStructuring from "./services/startup/EsopStructuring";
+import RiskArchitecture from "./services/startup/RiskAdvisory";
+import VirtualCFO from "./services/startup/VirtualCFO";
 import GstServices from "./services/tax/GSTFiling"
 import IncomeTaxServices from "./services/tax/IncomeTaxPlanning"
 import TdsCompliance from "./services/tax/TDSReturn"
-import AccountIntegrity from "./services/financial/AccountsIntegrity"
 import BookkeepingArchitecture from "./services/financial/Bookkeeping"
 import InternalControl from "./services/financial/InternalControl";
 import InventoryIntelligence from "./services/financial/InventoryAccuracy";
@@ -817,10 +819,12 @@ useEffect(() => {
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/startup/BusinessIncorporation" element={<BusinessIncorporation />}/>
+        <Route path="/services/startup/esop" element={<EsopStructuring />}/>
+        <Route path="/services/startup/risk" element={<RiskArchitecture />}/>
+        <Route path="/services/startup/vcfo" element={<VirtualCFO />}/>
         <Route path="/services/tax/gst" element={<GstServices/>}/>
         <Route path="/services/tax/income-tax" element={<IncomeTaxServices/>}/>
         <Route path="/services/tax/tds" element={<TdsCompliance/>}/>
-        <Route path="/services/financial/integrity" element={<AccountIntegrity/>}/>
         <Route path="/services/financial/bookkeeping" element={<BookkeepingArchitecture/>}/>
         <Route path="/services/financial/internal-control" element={<InternalControl/>}/>
         <Route path="/services/financial/inventory" element={<InventoryIntelligence/>}/>

@@ -10,7 +10,7 @@ export default function TdsCompliance() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
           {/* TEXT */}
-          <div className="pt-10 md:pt-0">
+          <div className="pt-6 md:pt-0">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               TDS Return Filing & Compliance
             </h1>
@@ -26,7 +26,7 @@ export default function TdsCompliance() {
           </div>
 
           {/* IMAGE */}
-          <div className="mt-10">
+          <div className="mt-10 md:mt-6">
             <img
               src="https://images.unsplash.com/photo-1554224154-22dec7ec8818"
               alt="TDS Compliance"
@@ -67,6 +67,60 @@ export default function TdsCompliance() {
 
         </div>
 
+      </section>
+
+
+      {/* TDS FILING IMAGE SECTION */}
+      <section className="px-6 md:px-16 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <img
+            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f"
+            alt="TDS Filing"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Accurate TDS Filing
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Proper TDS filing ensures that taxes deducted at source are
+              correctly reported to tax authorities. Our team handles
+              quarterly filings, reconciliation of TDS deductions, and
+              issuance of TDS certificates to maintain full compliance.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* COMPLIANCE IMAGE SECTION */}
+      <section className="px-6 md:px-16 py-16 bg-white">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              TDS Compliance & Documentation
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Businesses must ensure correct deduction rates, timely payments,
+              and accurate filings. We assist with TDS reconciliation,
+              correction returns, and handling notices from tax authorities
+              to ensure smooth compliance.
+            </p>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
+            alt="TDS Documentation"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+        </div>
       </section>
 
 

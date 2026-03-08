@@ -79,6 +79,61 @@ export default function BookkeepingArchitecture() {
       </section>
 
 
+      {/* ACCOUNTING SYSTEM IMAGE */}
+      <section className="px-6 md:px-16 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <img
+            src="https://images.unsplash.com/photo-1554224154-26032ffc0d07"
+            alt="Accounting bookkeeping"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Structured Accounting Systems
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              We design structured accounting systems that ensure accurate
+              financial records, organized documentation, and transparent
+              reporting. Our bookkeeping architecture allows founders and
+              finance teams to track transactions efficiently and maintain
+              reliable financial data.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* FINANCIAL ANALYTICS IMAGE */}
+      <section className="px-6 md:px-16 py-16 bg-white">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Financial Reporting & Insights
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Our bookkeeping services go beyond basic record keeping.
+              We provide financial reporting, MIS dashboards, and analytics
+              that help founders understand profitability, control costs,
+              and prepare for investor discussions.
+            </p>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+            alt="Financial analytics reporting"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+        </div>
+      </section>
+
+
       {/* WHY CHOOSE */}
       <section className="bg-white px-6 md:px-16 py-16 text-center">
 

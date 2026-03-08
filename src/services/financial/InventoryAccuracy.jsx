@@ -38,7 +38,7 @@ export default function InventoryIntelligence() {
 
           </div>
 
-          {/* IMAGE */}
+          {/* HERO IMAGE */}
           <div className="mt-10 md:mt-12 overflow-hidden rounded-xl shadow-xl">
 
             <img
@@ -75,6 +75,64 @@ export default function InventoryIntelligence() {
 
             </motion.div>
           ))}
+
+        </div>
+
+      </section>
+
+
+      {/* INVENTORY RECONCILIATION IMAGE */}
+      <section className="px-6 md:px-16 py-16">
+
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <img
+            src="https://images.unsplash.com/photo-1553413077-190dd305871c"
+            alt="Inventory stock checking"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Inventory Reconciliation & Accuracy
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Inventory discrepancies can impact financial statements and
+              operational efficiency. Our reconciliation reviews help identify
+              stock mismatches, documentation gaps, and process weaknesses,
+              ensuring accurate and reliable inventory records.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* INVENTORY ANALYTICS IMAGE */}
+      <section className="px-6 md:px-16 py-16 bg-white">
+
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Ageing Analysis & Stock Intelligence
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Inventory ageing analysis helps businesses identify slow-moving
+              and obsolete stock. Our diagnostics provide actionable insights
+              to improve purchasing decisions, optimize stock levels, and
+              enhance working capital efficiency.
+            </p>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+            alt="Inventory analytics and planning"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
 
         </div>
 

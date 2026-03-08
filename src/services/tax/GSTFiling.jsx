@@ -2,15 +2,27 @@ import { motion } from "framer-motion";
 import { Landmark, ShieldCheck, Clock, BadgeCheck } from "lucide-react";
 
 export default function GstServices() {
+
+  const services = [
+    "GST Registration & Amendment",
+    "Monthly / Quarterly GST Filing",
+    "Annual GST Return (GSTR-9)",
+    "GST Reconciliation",
+    "GST Notice Handling",
+    "Input Tax Credit Optimization"
+  ];
+
   return (
     <div className="bg-rose-50">
 
       {/* HERO */}
       <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white px-6 md:px-16 py-20">
+
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
           {/* TEXT */}
-          <div className="pt-10 md:pt-0">
+          <div className="mt-6 md:mt-0">
+
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               GST Registration & Filing Services
             </h1>
@@ -23,57 +35,77 @@ export default function GstServices() {
             <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold">
               Talk to GST Expert
             </button>
+
           </div>
 
-          {/* IMAGE */}
+          {/* HERO IMAGE */}
           <div className="mt-10 overflow-hidden rounded-xl shadow-xl">
             <img
               src="https://images.unsplash.com/photo-1554224154-26032ffc0d07"
               alt="GST Registration and Filing Services"
-              className="w-full h-[360px] object-cover scale-105"
+              className="w-full h-[360px] object-cover"
             />
           </div>
 
         </div>
+
       </section>
+
 
       {/* SERVICES */}
       <section className="px-6 md:px-16 py-16">
+
         <h2 className="text-3xl font-bold text-center mb-12">
           Our GST Services
         </h2>
 
+        {/* SERVICES IMAGE */}
+        <div className="mb-12">
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+            alt="financial compliance services"
+            className="rounded-xl shadow-lg w-full object-cover h-[320px]"
+          />
+        </div>
+
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            "GST Registration & Amendment",
-            "Monthly / Quarterly GST Filing",
-            "Annual GST Return (GSTR-9)",
-            "GST Reconciliation",
-            "GST Notice Handling",
-            "Input Tax Credit Optimization"
-          ].map((service, index) => (
+
+          {services.map((service, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
               className="bg-white p-6 rounded-xl shadow hover:shadow-xl"
             >
-              <Landmark className="text-rose-600 mb-4" size={32} />
+              <Landmark className="text-rose-600 mb-4" size={32}/>
               <p>{service}</p>
             </motion.div>
           ))}
+
         </div>
+
       </section>
+
 
       {/* WHY CHOOSE */}
       <section className="bg-white px-6 md:px-16 py-16 text-center">
+
         <h2 className="text-3xl font-bold mb-12">
           Why Choose Aaravi for GST Services?
         </h2>
 
+        {/* WHY IMAGE */}
+        <div className="mb-12">
+          <img
+            src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c"
+            alt="business finance advisory"
+            className="rounded-xl shadow-lg w-full object-cover h-[320px]"
+          />
+        </div>
+
         <div className="grid md:grid-cols-3 gap-8">
 
           <div>
-            <ShieldCheck className="text-rose-600 mx-auto mb-4" size={36} />
+            <ShieldCheck className="text-rose-600 mx-auto mb-4" size={36}/>
             <h3 className="font-semibold">100% Compliance</h3>
             <p className="text-gray-600">
               Accurate GST filing and regulatory compliance.
@@ -81,7 +113,7 @@ export default function GstServices() {
           </div>
 
           <div>
-            <Clock className="text-rose-600 mx-auto mb-4" size={36} />
+            <Clock className="text-rose-600 mx-auto mb-4" size={36}/>
             <h3 className="font-semibold">Timely Filing</h3>
             <p className="text-gray-600">
               Avoid penalties with on-time filing.
@@ -89,7 +121,7 @@ export default function GstServices() {
           </div>
 
           <div>
-            <BadgeCheck className="text-rose-600 mx-auto mb-4" size={36} />
+            <BadgeCheck className="text-rose-600 mx-auto mb-4" size={36}/>
             <h3 className="font-semibold">Expert Advisory</h3>
             <p className="text-gray-600">
               Professional GST consultation.
@@ -97,10 +129,13 @@ export default function GstServices() {
           </div>
 
         </div>
+
       </section>
+
 
       {/* CTA */}
       <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white text-center px-6 md:px-16 py-16">
+
         <h2 className="text-3xl font-bold mb-4">
           Need Help With GST Compliance?
         </h2>
@@ -112,6 +147,7 @@ export default function GstServices() {
         <button className="bg-white text-rose-600 px-6 py-3 rounded-lg font-semibold">
           Contact Us
         </button>
+
       </section>
 
     </div>

@@ -9,7 +9,8 @@ export default function IncomeTaxServices() {
       <section className="bg-gradient-to-r from-rose-400 to-red-300 text-white px-6 md:px-16 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          <div className="pt-10 md:pt-0">
+          {/* TEXT */}
+          <div className="pt-6 md:pt-0">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Income Tax Planning & Filing
             </h1>
@@ -24,13 +25,14 @@ export default function IncomeTaxServices() {
             </button>
           </div>
 
-          <div className="mt-10">
+            {/* IMAGE */}
+            <div className="mt-10 md:mt-6">
             <img
-              src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e"
-              alt="Income Tax Services"
-              className="rounded-xl shadow-xl w-full object-cover h-[350px]"
+                src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e"
+                alt="Income Tax Services"
+                className="rounded-xl shadow-xl w-full object-cover h-[350px]"
             />
-          </div>
+            </div>
 
         </div>
       </section>
@@ -65,6 +67,60 @@ export default function IncomeTaxServices() {
 
         </div>
 
+      </section>
+
+
+      {/* TAX ADVISORY IMAGE */}
+      <section className="px-6 md:px-16 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <img
+            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f"
+            alt="Tax Planning"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Strategic Tax Planning
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Proper tax planning ensures businesses and individuals minimize
+              liabilities while staying compliant with tax regulations.
+              Our advisors analyze income structures, deductions,
+              exemptions, and investments to design optimized tax strategies.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* TAX COMPLIANCE IMAGE */}
+      <section className="px-6 md:px-16 py-16 bg-white">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Compliance & Accurate Filing
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Income tax compliance requires accurate documentation,
+              proper return filing, and adherence to deadlines.
+              Our experts ensure error-free filings, proper
+              documentation management, and handling of tax notices.
+            </p>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
+            alt="Tax Compliance"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+        </div>
       </section>
 
 

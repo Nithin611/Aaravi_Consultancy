@@ -38,7 +38,7 @@ export default function InternalControl() {
 
           </div>
 
-          {/* IMAGE */}
+          {/* HERO IMAGE */}
           <div className="mt-10 md:mt-12 overflow-hidden rounded-xl shadow-xl">
 
             <img
@@ -78,6 +78,61 @@ export default function InternalControl() {
 
         </div>
 
+      </section>
+
+
+      {/* INTERNAL CONTROL PROCESS IMAGE */}
+      <section className="px-6 md:px-16 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <img
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+            alt="Internal control audit process"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Internal Control Reviews
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Strong internal controls help organizations maintain financial
+              integrity and operational discipline. Our team evaluates
+              financial processes, authorization structures, and risk areas
+              to identify gaps and strengthen governance systems.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* GOVERNANCE FRAMEWORK IMAGE */}
+      <section className="px-6 md:px-16 py-16 bg-white">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+
+          <div className="pt-6 md:pt-0">
+            <h2 className="text-3xl font-bold mb-4">
+              Governance & Risk Frameworks
+            </h2>
+
+            <p className="text-gray-700 leading-relaxed">
+              Effective governance frameworks provide clarity in decision
+              making, accountability, and financial discipline. We help
+              businesses design SOPs, delegation matrices, and risk
+              monitoring systems that improve operational transparency
+              and investor confidence.
+            </p>
+          </div>
+
+          <img
+            src="https://images.unsplash.com/photo-1554224154-26032ffc0d07"
+            alt="Corporate governance strategy"
+            className="rounded-xl shadow-lg h-[320px] object-cover w-full"
+          />
+
+        </div>
       </section>
 
 
